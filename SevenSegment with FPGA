@@ -1,0 +1,36 @@
+
+module sevensegment(display,anode,btn,mclk);
+input mclk; input [3:0] btn;
+output [7:0] display; output [3:0] anode;
+reg [7:0] displays;  reg [3:0] anode;
+
+always@(mclk)
+begin
+
+if(btn[3]==1)
+begin
+anode=4'b0111;
+displays=8'b10011111; // 1 yazdýrmak için B ve C 0 olmalý
+end
+
+if(btn[2]==1)
+begin
+anode=4'b1011;
+displays=8'b00100101;  // 2 , 8 bitin sonundaki DP nokta
+end
+
+if(btn[1]==1)
+begin
+anode=4'b1101;
+displays=8'b00001101; // 3 
+end
+
+if(btn[0]==1)
+begin
+anode=4'b1110;    // 4
+displays=8'b10011001;
+end
+
+end
+assign display=displays;
+endmodule 
